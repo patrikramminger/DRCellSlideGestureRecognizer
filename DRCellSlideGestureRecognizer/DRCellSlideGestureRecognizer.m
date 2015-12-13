@@ -73,6 +73,13 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
 	}
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UISlider class]]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 	CGPoint velocity = [self velocityInView:self.view];
 	
