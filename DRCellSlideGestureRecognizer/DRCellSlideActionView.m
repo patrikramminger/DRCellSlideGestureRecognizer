@@ -33,20 +33,18 @@
 }
 
 - (void)cellDidUpdatePosition:(UITableViewCell *)cell {
-	// NSLog(@"%@", self.superview);
 	[self updateIconImageViewFrame];
 	self.iconImageView.alpha = fabs(cell.frame.origin.x)/(self.iconImageView.image.size.width+self.action.iconMargin*2);
 }
 
 - (void)tint {
-	self.iconImageView.tintColor = self.active ? self.action.activeColor : self.action.inactiveColor;
 	self.backgroundColor = self.active ? self.action.activeBackgroundColor : self.action.inactiveBackgroundColor;
 }
 
 - (void)setAction:(DRCellSlideAction *)action {
 	_action = action;
 	
-	self.iconImageView.image = [action.icon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	self.iconImageView.image = [action.icon imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	self.iconImageView.contentMode = action.fraction >= 0 ? UIViewContentModeLeft : UIViewContentModeRight;
 	
 	[self tint];

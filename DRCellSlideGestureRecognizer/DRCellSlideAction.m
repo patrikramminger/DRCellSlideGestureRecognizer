@@ -19,7 +19,6 @@
 		_fraction = fraction;
 		_activeBackgroundColor = [UIColor blueColor];
 		_inactiveBackgroundColor = [UIColor colorWithWhite:0.94 alpha:1];
-		_activeColor = _inactiveColor = [UIColor whiteColor];
 		_iconMargin = 25;
 	}
 	
