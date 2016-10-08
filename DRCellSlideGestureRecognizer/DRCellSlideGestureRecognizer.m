@@ -22,6 +22,8 @@
 @property (nonatomic, assign) UITableViewCell *cell;
 @property (nonatomic, strong) DRCellSlideActionView *actionView;
 
+@property UISelectionFeedbackGenerator *selectionFeedbackGenerator;
+
 @end
 
 @implementation DRCellSlideGestureRecognizer
@@ -101,7 +103,13 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
         self.actionView.frame = self.cell.frame;
         self.actionView.active = NO;
         
+        self.selectionFeedbackGenerator = [UISelectionFeedbackGenerator new];
+        [self.selectionFeedbackGenerator prepare];
+        
     } else if (self.state == UIGestureRecognizerStateChanged) {
+        
+        DRCellSlideAction *previousAction = self.actionView.action;
+        BOOL previousState = self.actionView.active;
         
         [self updateCellPosition];
         
@@ -117,10 +125,19 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
             self.actionView.action.actionView = self.actionView;
         }
         
+        if (self.actionView.action && ((previousAction && ![self.actionView.action isEqual:previousAction]) || self.actionView.active != previousState)) {
+            [self.selectionFeedbackGenerator selectionChanged];
+            [self.selectionFeedbackGenerator prepare];
+        }
+        
     } else if (self.state == UIGestureRecognizerStateEnded) {
         
         [self performAction];
         
+        self.selectionFeedbackGenerator = nil;
+        
+    } else if (self.state == UIGestureRecognizerStateCancelled || self.state == UIGestureRecognizerStateFailed) {
+        self.selectionFeedbackGenerator = nil;
     }
 }
 
