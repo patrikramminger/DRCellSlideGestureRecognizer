@@ -132,7 +132,7 @@ NSString * const stringForCell4 = @"Elastic left and right actions";
 }
 
 - (DRCellSlideActionBlock)pushTriggerBlock {
-    return ^(UITableView *tableView, NSIndexPath *indexPath) {
+    return ^(UITableView *tableView, NSIndexPath *indexPath, DRCellSlideAction *action) {
         [strings removeObjectAtIndex:indexPath.row];
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
@@ -141,7 +141,7 @@ NSString * const stringForCell4 = @"Elastic left and right actions";
 }
 
 - (DRCellSlideActionBlock)pullTriggerBlock {
-    return ^(UITableView *tableView, NSIndexPath *indexPath) {
+    return ^(UITableView *tableView, NSIndexPath *indexPath, DRCellSlideAction *action) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Hooray!" message:@"You just triggered a cell action." preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];

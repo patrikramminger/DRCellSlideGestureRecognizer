@@ -90,6 +90,13 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
         
         [self sortActions];
         
+        for (DRCellSlideAction *action in self.leftActions) {
+            if (action.prepareBlock) action.prepareBlock(self.tableView, [self indexPath], action);
+        }
+        for (DRCellSlideAction *action in self.rightActions) {
+            if (action.prepareBlock) action.prepareBlock(self.tableView, [self indexPath], action);
+        }
+        
         [self.cell.superview insertSubview:self.actionView atIndex:0];
         self.actionView.frame = self.cell.frame;
         self.actionView.active = NO;
@@ -197,7 +204,8 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
         
         CGFloat horizontalTranslation = [self horizontalTranslationForActionBehavior];
         
-        if (self.actionView.action.willTriggerBlock) self.actionView.action.willTriggerBlock(self.tableView, [self indexPath]);
+        if (self.actionView.action.willTriggerBlock) self.actionView.action.willTriggerBlock(self.tableView, [self indexPath], self.actionView.action);
+        
         [self translateCellHorizontally:horizontalTranslation animatedlyWithDuration:ANIMATION_TIME damping:1 completion:^(BOOL finished) {
             
             if (self.actionView.action.behavior == DRCellSlideActionPushBehavior) {
@@ -206,7 +214,7 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
                 [self.actionView removeFromSuperview];
             }
             
-            if (self.actionView.action.didTriggerBlock) self.actionView.action.didTriggerBlock(self.tableView, [self indexPath]);
+            if (self.actionView.action.didTriggerBlock) self.actionView.action.didTriggerBlock(self.tableView, [self indexPath], self.actionView.action);
         }];
         
     } else {

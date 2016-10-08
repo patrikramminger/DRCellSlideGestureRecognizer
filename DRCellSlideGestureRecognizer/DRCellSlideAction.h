@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, DRCellSlideActionBehavior) {
     DRCellSlideActionPushBehavior,
 };
 
-typedef void(^DRCellSlideActionBlock)(UITableView *tableView, NSIndexPath *indexPath);
+typedef void(^DRCellSlideActionBlock)(UITableView *tableView, NSIndexPath *indexPath, DRCellSlideAction *action);
 typedef void(^DRCellSlideActionStateBlock)(DRCellSlideAction *action, BOOL active);
 
 @property (nonatomic) DRCellSlideActionBehavior behavior;
@@ -28,6 +28,7 @@ typedef void(^DRCellSlideActionStateBlock)(DRCellSlideAction *action, BOOL activ
 @property (nonatomic, strong) UIImage *icon;
 @property (nonatomic) CGFloat iconMargin;
 
+@property (nonatomic, copy) DRCellSlideActionBlock prepareBlock;
 @property (nonatomic, copy) DRCellSlideActionBlock willTriggerBlock;
 @property (nonatomic, copy) DRCellSlideActionBlock didTriggerBlock;
 @property (nonatomic, copy) DRCellSlideActionStateBlock didChangeStateBlock;
