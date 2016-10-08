@@ -11,8 +11,8 @@
 @interface DRCellSlideAction : NSObject
 
 typedef NS_ENUM(NSUInteger, DRCellSlideActionBehavior) {
-	DRCellSlideActionPullBehavior,
-	DRCellSlideActionPushBehavior,
+    DRCellSlideActionPullBehavior,
+    DRCellSlideActionPushBehavior,
 };
 
 typedef void(^DRCellSlideActionBlock)(UITableView *tableView, NSIndexPath *indexPath);

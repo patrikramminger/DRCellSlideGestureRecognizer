@@ -11,26 +11,26 @@
 @implementation DRCellSlideAction
 
 + (instancetype)actionForFraction:(CGFloat)fraction {
-	return [[self alloc] initWithFraction:fraction];
+    return [[self alloc] initWithFraction:fraction];
 }
 
 - (instancetype)initWithFraction:(CGFloat)fraction {
-	if (self = [super init]) {
-		_fraction = fraction;
-		_activeBackgroundColor = [UIColor blueColor];
-		_inactiveBackgroundColor = [UIColor colorWithWhite:0.94 alpha:1];
-		_iconMargin = 25;
-	}
-	
-	return self;
+    if (self = [super init]) {
+        _fraction = fraction;
+        _activeBackgroundColor = [UIColor blueColor];
+        _inactiveBackgroundColor = [UIColor colorWithWhite:0.94 alpha:1];
+        _iconMargin = 25;
+    }
+    
+    return self;
 }
 
 - (void)setElasticity:(CGFloat)elasticity {
-	_elasticity = fabs(elasticity)*[self fractionSign];
+    _elasticity = fabs(elasticity)*[self fractionSign];
 }
 
 - (CGFloat)fractionSign {
-	return self.fraction/fabs(self.fraction);
+    return self.fraction/fabs(self.fraction);
 }
 
 @end

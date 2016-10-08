@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "DRCellSlideAction.h"
 
 @interface DRCellSlideGestureRecognizer : UIPanGestureRecognizer <UIGestureRecognizerDelegate>

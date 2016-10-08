@@ -7,7 +7,6 @@
 //
 
 #import "DRCellSlideActionView.h"
-
 #import "DRCellSlideAction.h"
 
 @interface DRCellSlideActionView ()
@@ -19,44 +18,44 @@
 @implementation DRCellSlideActionView
 
 - (instancetype)init {
-	if (self = [super init]) {
-		self.iconImageView = [UIImageView new];
-		[self addSubview:self.iconImageView];
-	}
-	
-	return self;
+    if (self = [super init]) {
+        self.iconImageView = [UIImageView new];
+        [self addSubview:self.iconImageView];
+    }
+    
+    return self;
 }
 
 - (void)updateIconImageViewFrame {
-	self.iconImageView.frame = CGRectMake(0, 0, self.frame.size.width-self.action.iconMargin*2, self.frame.size.height);
-	self.iconImageView.center = CGPointMake(self.center.x, self.iconImageView.frame.size.height/2);
+    self.iconImageView.frame = CGRectMake(0, 0, self.frame.size.width-self.action.iconMargin*2, self.frame.size.height);
+    self.iconImageView.center = CGPointMake(self.center.x, self.iconImageView.frame.size.height/2);
 }
 
 - (void)cellDidUpdatePosition:(UITableViewCell *)cell {
-	[self updateIconImageViewFrame];
-	self.iconImageView.alpha = fabs(cell.frame.origin.x)/(self.iconImageView.image.size.width+self.action.iconMargin*2);
+    [self updateIconImageViewFrame];
+    self.iconImageView.alpha = fabs(cell.frame.origin.x)/(self.iconImageView.image.size.width+self.action.iconMargin*2);
 }
 
 - (void)tint {
-	self.backgroundColor = self.active ? self.action.activeBackgroundColor : self.action.inactiveBackgroundColor;
+    self.backgroundColor = self.active ? self.action.activeBackgroundColor : self.action.inactiveBackgroundColor;
 }
 
 - (void)setAction:(DRCellSlideAction *)action {
-	_action = action;
-	
-	self.iconImageView.image = [action.icon imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-	self.iconImageView.contentMode = action.fraction >= 0 ? UIViewContentModeLeft : UIViewContentModeRight;
-	
-	[self tint];
-	[self updateIconImageViewFrame];
+    _action = action;
+    
+    self.iconImageView.image = [action.icon imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.iconImageView.contentMode = action.fraction >= 0 ? UIViewContentModeLeft : UIViewContentModeRight;
+    
+    [self tint];
+    [self updateIconImageViewFrame];
 }
 
 - (void)setActive:(BOOL)active {
-	if (_active != active) {
-		_active = active;
-		
-		[self tint];
-	}
+    if (_active != active) {
+        _active = active;
+        
+        [self tint];
+    }
 }
 
 @end
