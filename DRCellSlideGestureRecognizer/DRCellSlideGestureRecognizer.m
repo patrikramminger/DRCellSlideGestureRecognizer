@@ -111,7 +111,10 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
         }
         
         if ([self actionForCurrentCellPosition] != self.actionView.action) {
-            self.actionView.action = [self actionForCurrentCellPosition];
+            self.actionView.action.actionView = nil;
+            DRCellSlideAction *action = [self actionForCurrentCellPosition];
+            self.actionView.action = action;
+            self.actionView.action.actionView = self.actionView;
         }
         
     } else if (self.state == UIGestureRecognizerStateEnded) {

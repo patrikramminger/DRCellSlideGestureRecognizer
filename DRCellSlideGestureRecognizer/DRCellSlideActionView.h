@@ -14,6 +14,7 @@
 
 @property (nonatomic, getter=isActive) BOOL active;
 @property (nonatomic, weak) DRCellSlideAction *action;
+@property (nonatomic, strong) UIImageView *iconImageView;
 
 - (void)cellDidUpdatePosition:(UITableViewCell *)cell;
 

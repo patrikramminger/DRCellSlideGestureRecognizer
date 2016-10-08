@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DRCellSlideActionView.h"
 
 @interface DRCellSlideAction : NSObject
 
@@ -32,6 +33,8 @@ typedef void(^DRCellSlideActionStateBlock)(DRCellSlideAction *action, BOOL activ
 @property (nonatomic, copy) DRCellSlideActionBlock willTriggerBlock;
 @property (nonatomic, copy) DRCellSlideActionBlock didTriggerBlock;
 @property (nonatomic, copy) DRCellSlideActionStateBlock didChangeStateBlock;
+
+@property (nonatomic, weak) DRCellSlideActionView *actionView;
 
 + (instancetype)actionForFraction:(CGFloat)fraction;
 

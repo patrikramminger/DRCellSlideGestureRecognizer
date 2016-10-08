@@ -33,4 +33,12 @@
     return self.fraction/fabs(self.fraction);
 }
 
+- (void)setIcon:(UIImage *)icon {
+    _icon = icon;
+    
+    if (self.actionView) {
+        self.actionView.iconImageView.image = icon;
+    }
+}
+
 @end

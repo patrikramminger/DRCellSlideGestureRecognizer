@@ -11,8 +11,6 @@
 
 @interface DRCellSlideActionView ()
 
-@property (nonatomic, strong) UIImageView *iconImageView;
-
 @end
 
 @implementation DRCellSlideActionView
