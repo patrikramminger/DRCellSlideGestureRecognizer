@@ -43,7 +43,15 @@
 }
 
 - (UITableView *)tableView {
-    return (UITableView *)self.cell.superview.superview;
+    
+    // With iOS 11 UITableView is direct superview
+    if ([self.cell.superview isKindOfClass:[UITableView class]]) {
+        return (UITableView *)self.cell.superview;
+        
+    } else {
+        // iOS 10 and previous
+        return (UITableView *)self.cell.superview.superview;
+    }
 }
 
 - (UITableViewCell *)cell {
