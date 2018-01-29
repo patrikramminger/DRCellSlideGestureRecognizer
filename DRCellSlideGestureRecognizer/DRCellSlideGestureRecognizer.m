@@ -261,6 +261,7 @@ void safeFor(id arrayOrObject, void (^forBlock)(id object)) {
 - (void)dismissActionView {
     [UIView animateWithDuration:(0.3) animations:^{
         self.actionView.alpha = 0;
+        [self translateCellHorizontally:0];
     } completion:^(BOOL finished) {
         [self.actionView removeFromSuperview];
         self.actionView.alpha = 1;
